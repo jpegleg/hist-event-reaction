@@ -14,23 +14,8 @@ which wget
 if [ $? -eq 0 ]; then
   echo "Found wget, which we use to pull back down data from the web that gets deleted."
 else
-  echo "Installing wget..."
-  declare -A osInfo;
-  osInfo[/etc/redhat-release]="yum install"
-  osInfo[/etc/arch-release]="pacman -Syu"
-  osInfo[/etc/gentoo-release]="emerge"
-  osInfo[/etc/SuSE-release]="zypper install"
-  osInfo[/etc/debian_version]="apt-get install"
-  for f in ${!osInfo[@]}; do
-    if [[ -f $f ]]; then
-        echo Package manager: ${osInfo[$f]}
-        echo "Running ${osInfo[$f]} as $(whoami)";
-        ${osInfo[$f]} wget
-     else
-        echo "Package manager not identified..."
-        echo "Please install wget before running this script again."
-        exit 1
-    fi
+  echo "Please install wget before running this script again."
+  exit 1
 done
 fi
 if [ -f /usr/local/bin/sec.pl ] ; then
