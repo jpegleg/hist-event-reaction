@@ -41,8 +41,8 @@ else
         else
           echo "Could not install sec.pl, please run with permissions to write to /usr/local/bin"
         fi
+      fi
     fi
-  fi
 fi
 echo "Alright, now that we have the dependancies,  moving on to the hist-event-reaction configuration...."
 if [ whoami == root ]; then
@@ -90,7 +90,10 @@ fi
 echo "Daemonizing"
 if [ whoami == root ]; then
 sec.pl -detach -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
+echo "Daemonized with the pid of:";
+ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' | tee /var/run/hist-event-reaction.pid
 else
 sudo sec.pl -detach -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
+echo "Daemonized with the pid of:";
+ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' 
 fi
-echo "Daemonized."
