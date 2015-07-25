@@ -1,2 +1,2 @@
-# root-hist-event-reaction
+# hist-event-reaction
 A sec.pl based history file event correlation template.
