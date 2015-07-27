@@ -29,20 +29,20 @@ else
     chmod +x /usr/local/bin/sec.pl
   else
     echo "Running as $(whoami)";
-    cp sec /usr/local/bin/sec.pl
+  cp sec /usr/local/bin/sec.pl
+  if [ $? -eq 0 ]; then
+    echo "Configured sec as $(whoami)"
+  else
+    echo "Failed to configure sec as $(whoami).... trying sudo."
+    sudo cp sec /usr/local/bin/sec.pl
     if [ $? -eq 0 ]; then
-      echo "Configured sec as $(whoami)"
+    echo "Configured sec as $(whoami) with sudo."
     else
-      echo "Failed to configure sec as $(whoami).... trying sudo."
-      sudo cp sec /usr/local/bin/sec.pl
-        if [ $? -eq 0 ]; then
-          echo "Configured sec as $(whoami) with sudo."
-        else
-        else
-          echo "Could not install sec.pl, please run with permissions to write to /usr/local/bin"
-        fi
-      fi
+    else
+    echo "Could not install sec.pl, please run with permissions to write to /usr/local/bin"
     fi
+    fi
+  fi
 fi
 echo "Alright, now that we have the dependancies,  moving on to the hist-event-reaction configuration...."
 if [ whoami == root ]; then
@@ -67,33 +67,33 @@ if [ whoami == root ]; then
       sudo mkdir -p /opt/hist-event-reaction/etc
       sudo mkdir -p /opt/hist-event-reaction/bin
       if [ $? -eq 0 ]; then
-        echo "Set up directories as $(whoami) with sudo."
+      echo "Set up directories as $(whoami) with sudo."
       else
-        echo "Could not set up directories, please run with elevated permissions."
+      echo "Could not set up directories, please run with elevated permissions."
       fi
     fi
  fi
-    echo "Looking for hist-event-reaction.conf"
-    ls hist-event-reaction.conf
-    cp hist-event-reaction.conf /opt/hist-event-reaction/etc/
-    if [ $? -eq 0 ]; then
-      echo "Located and install hist-event-reaction.conf  as $(whoami)"
-    else
-      echo "Failed to install hist-event-reaction.conf  as $(whoami).... trying sudo."
-      sudo cp hist-event-reaction.conf /opt/hist-event-reaction/etc/
-        if [ $? -eq 0 ]; then
-          echo "Found and installed hist-event-reaction.conf  as $(whoami) with sudo."
-        else
-          echo "Could not install sec.pl, please run with permissions to write to /usr/local/bin"
-        fi
+echo "Looking for hist-event-reaction.conf"
+ls hist-event-reaction.conf
+cp hist-event-reaction.conf /opt/hist-event-reaction/etc/
+if [ $? -eq 0 ]; then
+  echo "Located and install hist-event-reaction.conf  as $(whoami)"
+else
+  echo "Failed to install hist-event-reaction.conf  as $(whoami).... trying sudo."
+  sudo cp hist-event-reaction.conf /opt/hist-event-reaction/etc/
+  if [ $? -eq 0 ]; then
+    echo "Found and installed hist-event-reaction.conf  as $(whoami) with sudo."
+  else
+    echo "Could not install sec.pl, please run with permissions to write to /usr/local/bin"
+  fi
 fi
 echo "Daemonizing"
 if [ whoami == root ]; then
-sec.pl -detach -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
-echo "Daemonized with the pid of:";
-ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' | tee /var/run/hist-event-reaction.pid
+  sec.pl -detach -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
+  echo "Daemonized with the pid of:";
+  ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' | tee /var/run/hist-event-reaction.pid
 else
-sudo sec.pl -detach -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
-echo "Daemonized with the pid of:";
-ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' 
+  sudo sec.pl -detach -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
+  echo "Daemonized with the pid of:";
+  ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' 
 fi
