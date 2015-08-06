@@ -3,6 +3,8 @@ A sec.pl based history file event correlation template.
 
 Run the following script to configure and launch a sec.pl daemon that monitors all /home/*/.bash_history and /root/.bash_history and writes it to a central log, timestamping it when it receives the data from the file.
 
+hist-event-reaction-configuration
+
 To enable this bash history monitoring to timestamp and process in real time, apply the follow to the user:
 
 
