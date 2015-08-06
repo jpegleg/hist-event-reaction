@@ -21,7 +21,7 @@ desc=Reading history input $0
 pattern=(.*?)
 action=create $0
 
-# Create a rule for pattern whatevercommand
+# Create rules for pattern whatevercommand
 type=Single
 ptype=RegExp
 desc=Reading for locksys4 pattern
