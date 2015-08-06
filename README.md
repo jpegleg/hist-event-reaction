@@ -8,11 +8,11 @@ To enable this bash history monitoring to timestamp and process in real time, ap
 
 export HISTCONTROL=ignoredups:erasedups
 shopt -s histappend
-export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r
 
 This centralized log creates sec.pl contexts which can be used for further rule processing. For example, you can create a rule for the context "rm -rf /tmp/stuff" and it will be able to execute futher actions like running scripts or creating more contexts.
 
-Example rule expasion version of hist-event-reaction.conf:
+Example rule expansion version of hist-event-reaction.conf that looks for "whatevercommand" and then runs /usr/local/bin/evaluationprogram when "whatevercommand" is read:
 
 type=Single
 ptype=RegExp
