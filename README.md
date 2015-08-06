@@ -21,9 +21,9 @@ desc=Reading history input $0
 pattern=(.*?)
 action=create $0
 
-# Create a rule for pattern locksys4
+# Create a rule for pattern whatevercommand
 type=Single
 ptype=RegExp
 desc=Reading for locksys4 pattern
-pattern=locksys4
+pattern=whatevercommand
 action=spawn /usr/local/bin/evaluationprogram
