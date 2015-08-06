@@ -14,14 +14,12 @@ This centralized log creates sec.pl contexts which can be used for further rule 
 
 Example rule expasion version of hist-event-reaction.conf:
 
-# Read all input from .bash_history files.
 type=Single
 ptype=RegExp
 desc=Reading history input $0
 pattern=(.*?)
 action=create $0
 
-# Create rules for pattern whatevercommand... automate event data collection and reporting on the fly.
 type=Single
 ptype=RegExp
 desc=Reading for whatevercommand pattern
