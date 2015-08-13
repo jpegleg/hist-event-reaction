@@ -89,11 +89,11 @@ else
 fi
 echo "Daemonizing"
 if [ whoami == root ]; then
-  sec.pl -detach -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
+  sec.pl -detach -reopen_timeout=60 -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
   echo "Daemonized with the pid of:";
   ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' | tee /var/run/hist-event-reaction.pid
 else
-  sudo sec.pl -detach -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
+  sudo sec.pl -detach -reopen_timeout=60 -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
   echo "Daemonized with the pid of:";
   ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' 
 fi
