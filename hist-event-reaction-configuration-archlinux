@@ -89,12 +89,12 @@ fi
 fi
 echo "Daemonizing"
 if [ whoami == root ]; then
-  journaltctl > /opt/hist-event-reaction/etc/journalctl.out &&
+  journaltctl > /opt/hist-event-reaction/etc/journalctl.out &
   sec.pl -detach -reopen_timeout=60 -input=/opt/hist-event-reaction/etc/journalctl.out -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
   echo "Daemonized with the pid of:";
   ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' | tee /var/run/hist-event-reaction.pid
 else
-  journaltctl > /opt/hist-event-reaction/etc/journalctl.out &&
+  journaltctl > /opt/hist-event-reaction/etc/journalctl.out &
   sudo sec.pl -detach -reopen_timeout=60 -input=/opt/hist-event-reaction/etc/journalctl.outi -nput=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
   echo "Daemonized with the pid of:";
   ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}'
