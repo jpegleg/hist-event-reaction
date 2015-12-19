@@ -16,7 +16,6 @@ if [ $? -eq 0 ]; then
 else
   echo "Please install wget before running this script again."
   exit 1
-done
 fi
 if [ -f /usr/local/bin/sec.pl ] ; then
   echo "Found /usr/local/bin/sec.pl"
@@ -37,7 +36,6 @@ else
     sudo cp sec /usr/local/bin/sec.pl
     if [ $? -eq 0 ]; then
     echo "Configured sec as $(whoami) with sudo."
-    else
     else
     echo "Could not install sec.pl, please run with permissions to write to /usr/local/bin"
     fi
