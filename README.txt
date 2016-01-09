@@ -28,3 +28,5 @@ ptype=RegExp
 desc=Reading for whatevercommand pattern
 pattern=whatevercommand
 action=spawn /usr/local/bin/evaluationprogram
+
+As it currently is, you will probably see the entire history file dumped on logon and exit. This is still useful to see, but it would be much more clean to just have the live append and not the full dump. I will probably be leaving it this way by default but I might update this readme on how to avoid the history file dumps.
