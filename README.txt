@@ -1,6 +1,8 @@
 # hist-event-reaction
 A sec.pl based history file event correlation template.
 
+Read the Simple Event Correlator documentation: https://simple-evcorr.github.io/
+
 Run the following script to configure and launch a sec.pl daemon that monitors all /home/*/.bash_history and /root/.bash_history and writes it to a central log, timestamping it when it receives the data from the file.
 
 hist-event-reaction-configuration
