@@ -48,6 +48,9 @@ if [ whoami == root ]; then
     echo "Setting up directories..."
     mkdir -p /opt/hist-event-reaction/etc/
     mkdir -p /opt/hist-event-reaction/bin/
+    echo "Setting up a local bin of the init script"
+    chmod +x hist-event-reaction 
+    cp hist-event-reaction /usr/local/bin/
     echo "Looking for hist-event-reaction.conf"
     ls hist-event-reaction.conf
     cp hist-eent-reaction.conf /opt/hist-event-reaction/etc/
@@ -57,6 +60,9 @@ if [ whoami == root ]; then
     echo "Setting up directories..."
     mkdir -p /opt/hist-event-reaction/etc/
     mkdir -p /opt/hist-event-reaction/bin/
+    echo "Setting up a local bin of the init script"
+    chmod +x hist-event-reaction 
+    cp hist-event-reaction /usr/local/bin/
     if [ $? -eq 0 ]; then
       echo "Set up directories as $(whoami)"
     else
