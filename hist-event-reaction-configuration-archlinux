@@ -16,7 +16,6 @@ echo "Found wget, which we use to pull back down data from the web that gets del
 else
 echo "Please install wget before running this script again."
 exit 1
-done
 fi
 if [ -f /usr/local/bin/sec.pl ] ; then
 echo "Found /usr/local/bin/sec.pl"
@@ -38,7 +37,6 @@ sudo cp sec /usr/local/bin/sec.pl
 if [ $? -eq 0 ]; then
 echo "Configured sec as $(whoami) with sudo."
 else
-else
 echo "Could not install sec.pl, please run with permissions to write to /usr/local/bin"
 fi
 fi
@@ -50,6 +48,9 @@ echo "Running as root."
 echo "Setting up directories..."
 mkdir -p /opt/hist-event-reaction/etc/
 mkdir -p /opt/hist-event-reaction/bin/
+echo "Setting up a local bin of the init script"
+chmod +x hist-event-reaction 
+cp hist-event-reaction /usr/local/bin/
 echo "Looking for hist-event-reaction.conf"
 ls hist-event-reaction.conf
 cp hist-eent-reaction.conf /opt/hist-event-reaction/etc/
