@@ -60,6 +60,9 @@ echo "Running as $(whoami)";
 echo "Setting up directories..."
 mkdir -p /opt/hist-event-reaction/etc/
 mkdir -p /opt/hist-event-reaction/bin/
+echo "Setting up a local bin of the init script"
+chmod +x hist-event-reaction 
+cp hist-event-reaction /usr/local/bin
 if [ $? -eq 0 ]; then
 echo "Set up directories as $(whoami)"
 else
