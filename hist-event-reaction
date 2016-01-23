@@ -1,59 +1,21 @@
-#!/bin/sh
+#!/bin/bash
 # Init script for pattern-learner.
 case "$1" in
 stop)
-ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}'| xargs kill -9 
+ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}'| xargs kill -9
 ;;
 start)
 echo "Daemonizing"
-if [ whoami == root ]; then
-echo "Daemonizing"
-if [ whoami == root ]; then
   sec.pl -detach -reopen_timeout=60 -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
-  echo "Daemonized with the pid of:";
+  echo "Daemonized with the pid of:"
   ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' | tee /var/run/hist-event-reaction.pid
-else
-  sudo sec.pl -detach -reopen_timeout=60 -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
-  echo "Daemonized with the pid of:";
-  ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' 
-fi
-else
-echo "Daemonizing"
-if [ whoami == root ]; then
-  sudo sec.pl -detach -reopen_timeout=60 -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
-  echo "Daemonized with the pid of:";
-  ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' | tee /var/run/hist-event-reaction.pid
-else
-  sudo sec.pl -detach -reopen_timeout=60 -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
-  echo "Daemonized with the pid of:";
-  ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' 
-fi
 ;;
 restart)
 ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}'| xargs kill -9
 echo "Daemonizing"
-if [ whoami == root ]; then
-echo "Daemonizing"
-if [ whoami == root ]; then
   sec.pl -detach -reopen_timeout=60 -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
-  echo "Daemonized with the pid of:";
+  echo "Daemonized with the pid of:"
   ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' | tee /var/run/hist-event-reaction.pid
-else
-  sudo sec.pl -detach -reopen_timeout=60 -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
-  echo "Daemonized with the pid of:";
-  ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' 
-fi
-else
-echo "Daemonizing"
-if [ whoami == root ]; then
-  sudo sec.pl -detach -reopen_timeout=60 -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
-  echo "Daemonized with the pid of:";
-  ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' | tee /var/run/hist-event-reaction.pid
-else
-  sudo sec.pl -detach -reopen_timeout=60 -input=/root/.bash_history -input=/root/.*history* -input=/home/*/.bash_history -conf=/opt/hist-event-reaction/etc/hist-event-reaction.conf -log=/opt/hist-event-reaction/hist-event-reaction.log
-  echo "Daemonized with the pid of:";
-  ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' 
-fi
 ;;
 *)
 echo "Usage: hist-event-reactionr option"
