@@ -18,7 +18,7 @@ echo "Daemonizing"
   ps -ef | grep "log=/opt/hist-event-reaction/hist-event-reaction.log" | grep -v grep | awk '{print $2}' | tee /var/run/hist-event-reaction.pid
 ;;
 *)
-echo "Usage: hist-event-reactionr option"
+echo "Usage: hist-event-reaction option"
 echo "Options include: start, stop, restart"
 exit;
 esac
